@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Overpass:ital,wght@0,100..900;1,100..900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;       
+}
+
+/* variables */
+
+:root{
+    --container-width: 92%;
+    --color-primary: #CA1D0A;
+    --color-grey: #E1E1E1;
+}
+
+body{
+    font-family: "Inter";
+    background-color: #141414;
+}
+
+.container{
+    max-width: var(--container-width);
+    margin: 0 auto;
+}
+
+a{
+    text-decoration: none;
+    color: #fff;
+}
+
+li{
+    list-style: none;
+}
+
+ul{
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+header{
+    position: fixed;
+    width: 100%;
+    padding: 1rem;
+}
+
+header .container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav{
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.navbar__links a{
+    color: var(--color-grey);
+} 
+
+.active{
+    color: #fff !important;
+}
+
+img{
+    width: 100%;
+}
+
+.logo-wrapper{
+    width: 6rem;
+}
+
+.navbar__actions{
+    display: flex;
+    align-items: center;
+    gap: 1.8rem;
+}
+
+
+.banner{
+    background: url("hero.png") no-repeat top center/cover;
+    height: 100vh;
+    overflow: auto;    
+}
