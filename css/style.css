@@ -11,17 +11,37 @@
 :root{
     --container-width: 92%;
     --color-primary: #CA1D0A;
+    --color-secondary: #fff;
     --color-grey: #E1E1E1;
+    --text-lg: 1.25rem;
+    --text-md: 1rem;
+    --text-sm: 0.75rem;
 }
 
 body{
     font-family: "Inter";
     background-color: #141414;
+    color: var(--color-secondary);
 }
 
 .container{
     max-width: var(--container-width);
     margin: 0 auto;
+}
+
+.btn{
+    padding: 0.7rem 1.5rem;
+    border-radius: 5px;
+}
+
+.btn-primary{
+    background: var(--color-secondary);
+    color: #000;
+}
+
+.btn-light{
+    background: #838383cf;
+    color: #000;
 }
 
 a{
@@ -81,9 +101,51 @@ img{
     gap: 1.8rem;
 }
 
-
+/* banner */
 .banner{
-    background: url("hero.png") no-repeat top center/cover;
+    background: url("/assets/hero.png") no-repeat top center/cover;
     height: 100vh;
-    overflow: auto;    
+    overflow: auto; 
+    padding-top: 12%;   
+}
+
+.banner__badge{
+    width: 6rem;
+}
+
+.banner__title{
+    width: 18rem;
+    margin: 30px 0;
+}
+
+.banner__description{
+    width: 40%;
+    line-height: 1.3;
+    font-size: var(--text-md);
+}
+
+.banner__btns {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-top: 1.2rem;
+}
+
+.banner__btns a{
+    display: flex !important;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.banner__btns img{
+    width: 1.5rem;
+}
+
+.banner__btn-info{
+    color: var(--color-secondary) !important;
+}
+
+.banner__btns span{
+    font-size: var(--text-md);
+    font-weight: 600;
 }
