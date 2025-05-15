@@ -104,7 +104,7 @@ img{
 /* banner */
 .banner{
     background: url("/assets/hero.png") no-repeat top center/cover;
-    height: 100vh;
+    /* height: 100vh; */
     overflow: auto; 
     padding-top: 12%;   
 }
@@ -148,4 +148,33 @@ img{
 .banner__btns span{
     font-size: var(--text-md);
     font-weight: 600;
+}
+
+/*series*/
+.series{
+    height: 100vh;
+}
+
+.watchSuggestions{
+    margin-top: 5rem;
+    font-size: var(--text-lg);
+    color: var(--color-grey);
+    font-weight: 600;
+}
+
+/* swiper */
+.swiper {
+  margin-top: 1rem;
+  height: 9.5rem;
+}
+
+.swiper-slide{
+    border: 1px solid #CA1D0A;
+    width: 16rem !important;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  color: #95959599 !important;   
+  font-size: 30px !important;    
 }
