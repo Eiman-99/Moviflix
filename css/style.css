@@ -105,7 +105,7 @@ img{
 /* banner */
 .banner{
     background: url("/assets/hero.png") no-repeat top center/cover ;
-    padding-top: 15%;  
+    padding-top: 12%;  
 }
 
 .banner__badge{
@@ -128,7 +128,7 @@ img{
     gap: 1rem;
     align-items: center;
     margin-top: 1.2rem;
-    margin-bottom: 3rem;
+    margin-bottom: 6rem;
 }
 
 .banner__btns a{
@@ -173,4 +173,3 @@ img{
   color: #ffffffb0 !important;   
   font-size: 30px !important;    
 }
-
