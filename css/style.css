@@ -62,7 +62,7 @@ ul{
 header{
     position: fixed;
     width: 100%;
-    padding: 1rem;
+    padding: 1rem 0;
 }
 
 header .container{
@@ -104,9 +104,12 @@ img{
 /* banner */
 .banner{
     background: url("/assets/hero.png") no-repeat top center/cover;
-    /* height: 100vh; */
-    overflow: auto; 
     padding-top: 12%;   
+    height: 100vh;
+}
+
+.banner__content{
+    padding-bottom: 8rem;
 }
 
 .banner__badge{
@@ -156,7 +159,6 @@ img{
 }
 
 .watchSuggestions{
-    margin-top: 5rem;
     font-size: var(--text-lg);
     color: var(--color-grey);
     font-weight: 600;
@@ -165,16 +167,15 @@ img{
 /* swiper */
 .swiper {
   margin-top: 1rem;
-  height: 9.5rem;
+  height: 14rem;
 }
 
 .swiper-slide{
-    border: 1px solid #CA1D0A;
-    width: 16rem !important;
+    /* width: 12rem !important; */
 }
 
 .swiper-button-next::after,
 .swiper-button-prev::after {
-  color: #95959599 !important;   
+  color: #ffffffb0 !important;   
   font-size: 30px !important;    
 }
