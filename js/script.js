@@ -1,14 +1,13 @@
-const pathName = window.location.pathname
-const swiper = document.querySelector('.swiper-wrapper')
+const pathName = window.location.pathname;
+const categoryWrappers = document.querySelectorAll('.watchSuggestions__wrapper');
 
-function initApp(){
-  if(pathName==='/'){
-    renderAll()
+function initApp() {
+  if (pathName === '/') {
+    renderAll();
   }
 }
 
-
-const getData = function(endpoint) {
+const getData = function(endpoint, swiperContainer) {
   const API_KEY = 'cc687401dafd56a04490baaaa29e1329';
   const API_URL = 'https://api.themoviedb.org/3/';
 
@@ -16,18 +15,14 @@ const getData = function(endpoint) {
     .then(response => response.json())
     .then(data => {
       const {results} = data
-      console.log(results);
-      renderSwiper(results);
-    }).catch(err=>console.log(err));
-
+      console.log(results)
+      renderSwiper(results, swiperContainer);
+    }).catch(err => console.log(err));
 };
 
-// getData('discover/movie');
-
-
-function renderSwiper(data) {
-  let html = ` `;
-
+function renderSwiper(data, swiperContainer) {
+  const swiperWrapper = document.querySelector(`${swiperContainer} .swiper-wrapper`);
+  let html = '';
   data.forEach(item => {
     html += `
       <div class="swiper-slide">
@@ -35,47 +30,52 @@ function renderSwiper(data) {
       </div>
     `;
   });
-  swiper.innerHTML = html;  
-  initializeSwiper();    
+
+  swiperWrapper.innerHTML = html;
+
+  initializeSwiper();
 }
 
-
-function initializeSwiper(){
-const swiper = new Swiper('.swiper', {
-  // Optional parameters
-  speed: 400,
-  spaceBetween: 10,
-  direction: 'horizontal',
-  loop: true,
-
- 
-  // Navigation arrows
-  navigation: {
+function initializeSwiper() {
+  new Swiper('.swiper', {
+    speed: 400,
+    spaceBetween: 10,
+    loop: true,
+    navigation: {
     nextEl: '.swiper-button-next',
     prevEl: '.swiper-button-prev',
-  },
-   breakpoints: {
-      375: {
-        slidesPerView: 3,
-      },
-      500: {
-        slidesPerView: 4,
-      },
-      700: {
-        slidesPerView: 6,
-      },
-      1200: {
-        slidesPerView: 9,
-      },
+    },
+    breakpoints: {
+      375: { slidesPerView: 3 },
+      500: { slidesPerView: 4 },
+      700: { slidesPerView: 6 },
+      1200: { slidesPerView: 9 },
     }
-
- 
-});
+  });
 }
 
-// render all suggestions on home page
-function renderAll(){
-  getData('discover/movie')
+function renderAll() {
+  categoryWrappers.forEach((wrapper, index) => {
+    // create a unique class for each swiper
+    const swiperClass = `swiper-${index}`;
+    wrapper.innerHTML = `
+      <div class="swiper ${swiperClass}">
+        <div class="swiper-wrapper"></div>
+        <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+      </div>
+    `;
+
+    const endpoints = [
+      'trending/all/day',
+      'movie/top_rated',
+      'trending/tv/day',
+      'discover/movie'
+    ];
+
+   
+    getData( endpoints[index] , `.${swiperClass}`);
+  });
 }
 
 document.addEventListener('DOMContentLoaded', initApp);
