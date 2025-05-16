@@ -1,6 +1,6 @@
 const pathName = window.location.pathname;
 const categoryWrappers = document.querySelectorAll('.watchSuggestions__wrapper');
-const seriesGenreWrapper = document.querySelectorAll('.series-genre__wrapper');
+const seriesGenreWrapper = document.querySelectorAll('.genre__wrapper');
 const API_KEY = 'cc687401dafd56a04490baaaa29e1329';
 const API_URL = 'https://api.themoviedb.org/3/';
 
@@ -10,6 +10,9 @@ function initApp() {
   }
   else if(pathName === '/series.html'){
     renderAllSeries()
+  }
+  else if(pathName === '/films.html'){
+    renderAllMovies()
   }
 }
 
@@ -29,7 +32,7 @@ const getGenre = function(type,genreId,swiperContainer){
   .then(response=>response.json())
   .then(data=>{
     const {results} = data
-    console.log(results)
+    // console.log(results)
       renderSwiper(results, swiperContainer);
   }).catch(err => console.log(err))
 }
@@ -107,6 +110,25 @@ function renderAllSeries(){
     const genreIds = [80,10759,18,10768,9648];
 
    getGenre( 'tv' ,genreIds[index] ,`.${swiperClass}`);
+
+  });
+}
+
+function renderAllMovies(){
+  seriesGenreWrapper.forEach((wrapper, index) => {
+    // create a unique class for each swiper
+    const swiperClass = `swiper-${index}`;
+    wrapper.innerHTML = `
+      <div class="swiper ${swiperClass}">
+        <div class="swiper-wrapper"></div>
+        <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+      </div>
+    `;
+
+    const genreIds = [10752,53,18,80,14];
+
+   getGenre( 'movie' ,genreIds[index] ,`.${swiperClass}`);
 
   });
 }
