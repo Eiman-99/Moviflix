@@ -151,10 +151,15 @@ img{
 }
 
 
-.watchSuggestions__title{
+.watchSuggestions__title, .genre__title{
     font-size: var(--text-lg);
     color: var(--color-grey);
     font-weight: 600;
+}
+
+/* Series */
+.series__wrapper{
+    padding-top: 10rem;
 }
 
 /* swiper */
@@ -170,6 +175,6 @@ img{
 
 .swiper-button-next::after,
 .swiper-button-prev::after {
-  color: #ffffffb0 !important;   
+  color: #ffffffe9 !important;   
   font-size: 30px !important;    
 }

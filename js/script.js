@@ -1,24 +1,38 @@
 const pathName = window.location.pathname;
 const categoryWrappers = document.querySelectorAll('.watchSuggestions__wrapper');
+const seriesGenreWrapper = document.querySelectorAll('.series-genre__wrapper');
+const API_KEY = 'cc687401dafd56a04490baaaa29e1329';
+const API_URL = 'https://api.themoviedb.org/3/';
 
 function initApp() {
-  if (pathName === '/') {
+  if (pathName === '/' || pathName === '/index.html'  ) {
     renderAll();
+  }
+  else if(pathName === '/series.html'){
+    renderAllSeries()
   }
 }
 
 const getData = function(endpoint, swiperContainer) {
-  const API_KEY = 'cc687401dafd56a04490baaaa29e1329';
-  const API_URL = 'https://api.themoviedb.org/3/';
-
   fetch(`${API_URL}${endpoint}?api_key=${API_KEY}`)
     .then(response => response.json())
     .then(data => {
       const {results} = data
-      console.log(results)
+      // console.log(results)
       renderSwiper(results, swiperContainer);
     }).catch(err => console.log(err));
 };
+
+// get data with genre
+const getGenre = function(type,genreId,swiperContainer){
+  fetch(`${API_URL}discover/${type}?api_key=${API_KEY}&with_genres=${genreId}`)
+  .then(response=>response.json())
+  .then(data=>{
+    const {results} = data
+    console.log(results)
+      renderSwiper(results, swiperContainer);
+  }).catch(err => console.log(err))
+}
 
 function renderSwiper(data, swiperContainer) {
   const swiperWrapper = document.querySelector(`${swiperContainer} .swiper-wrapper`);
@@ -66,16 +80,37 @@ function renderAll() {
       </div>
     `;
 
-    const endpoints = [
+      const endpoints = [
       'trending/all/day',
       'movie/top_rated',
       'trending/tv/day',
       'discover/movie'
     ];
+    getData( endpoints[index] , `.${swiperClass}`);
 
    
-    getData( endpoints[index] , `.${swiperClass}`);
   });
 }
+
+function renderAllSeries(){
+  seriesGenreWrapper.forEach((wrapper, index) => {
+    // create a unique class for each swiper
+    const swiperClass = `swiper-${index}`;
+    wrapper.innerHTML = `
+      <div class="swiper ${swiperClass}">
+        <div class="swiper-wrapper"></div>
+        <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+      </div>
+    `;
+
+    const genreIds = [80,10759,18,10768,9648];
+
+   getGenre( 'tv' ,genreIds[index] ,`.${swiperClass}`);
+
+  });
+}
+
+
 
 document.addEventListener('DOMContentLoaded', initApp);
