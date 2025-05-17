@@ -123,15 +123,15 @@ img{
     font-size: var(--text-md);
 }
 
-.banner__btns {
+.banner__btns, .hero__btns {
     display: flex;
     gap: 1rem;
     align-items: center;
     margin-top: 1.2rem;
-    margin-bottom: 6rem;
+    margin-bottom: 9rem;
 }
 
-.banner__btns a{
+.banner__btns a, .hero__btns a{
     display: flex !important;
     align-items: center;
     gap: 0.6rem;
@@ -177,4 +177,65 @@ img{
 .swiper-button-prev::after {
   color: #ffffffe9 !important;   
   font-size: 30px !important;    
+}
+
+/* details */
+.details{
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: #0000009a;
+    display: none;
+    z-index: 1;
+    padding-top: 2rem;
+    overflow: scroll;
+    height: 200vh;
+
+}
+
+.details__content{
+    width: 55%;
+    background: #181818;
+    margin: 0 auto;
+    height: 100%;
+    border-radius: 10px 10px 0 0;
+}
+
+.hero{
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 40%;
+    border-radius: 10px 10px 0 0;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+}
+
+.hero__wrapper{
+     background: linear-gradient(to top, #181818, transparent);
+     padding-left: 3rem;
+}
+
+.hero__wrapper .hero__title{
+    font-size: 3rem ;
+}
+
+.hero__btn-add{
+    border: 2px solid #b9b9b9;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    background: #3535359f;
+}
+
+.hero__btn-add img{
+    padding: 12px;
+}
+
+.hero__btn-add:hover{
+    border-color: #fff;
 }

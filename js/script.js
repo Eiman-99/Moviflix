@@ -7,12 +7,15 @@ const API_URL = 'https://api.themoviedb.org/3/';
 function initApp() {
   if (pathName === '/' || pathName === '/index.html'  ) {
     renderAll();
+    renderMovieOrSeriesDetails()
   }
   else if(pathName === '/series.html'){
     renderAllSeries()
+    renderMovieOrSeriesDetails()    
   }
   else if(pathName === '/films.html'){
     renderAllMovies()
+    renderMovieOrSeriesDetails()
   }
 }
 
@@ -21,7 +24,7 @@ const getData = function(endpoint, swiperContainer) {
     .then(response => response.json())
     .then(data => {
       const {results} = data
-      // console.log(results)
+      console.log(results)
       renderSwiper(results, swiperContainer);
     }).catch(err => console.log(err));
 };
@@ -37,13 +40,26 @@ const getGenre = function(type,genreId,swiperContainer){
   }).catch(err => console.log(err))
 }
 
+//get movie or series details by id
+const getDetails = function(type, id){
+  fetch(`${API_URL}${type}/${id}?api_key=${API_KEY}`)
+  .then(response=>response.json())
+  .then(data=>{
+    console.log(data)
+    createDetailsSection(data)
+  }).catch(err => console.log(err))
+}
+
 function renderSwiper(data, swiperContainer) {
   const swiperWrapper = document.querySelector(`${swiperContainer} .swiper-wrapper`);
   let html = '';
   data.forEach(item => {
+    const type = item.first_air_date ? 'tv' : 'movie';
     html += `
       <div class="swiper-slide">
+        <a href="?id=${item.id}&type=${type}">
         <img src="https://image.tmdb.org/t/p/w500${item.poster_path}" alt="Movie poster" />
+        </a>
       </div>
     `;
   });
@@ -133,6 +149,51 @@ function renderAllMovies(){
   });
 }
 
+// display movie or series details
+function renderMovieOrSeriesDetails(){
+  const params = new URLSearchParams(window.location.search)
+  const id = params.get("id")
+  const type = params.get("type")
+  if (!id || !type) return;
+
+  console.log(id,type)
+
+  getDetails(type,id)
+
+}
+
+function createDetailsSection(data){
+  const body = document.body;
+  const detailsPopUp = document.createElement('section')
+  detailsPopUp.classList='details'
+  body.append(detailsPopUp)
+  const detailsContent = document.createElement('div')
+  detailsContent.classList='details__content'
+  detailsPopUp.append(detailsContent)
+  
+  detailsContent.innerHTML=`
+         <div class="hero">
+        <div class="hero__wrapper">
+        <h2 class="hero__title">${data.name || data.title}</h2>
+      <div class="hero__btns">
+      <a href="" class="hero__btn-play btn-primary btn">
+        <img src="assets/play.png" alt="">
+        <span>Play</span>
+        </a>
+      <a href="" class="hero__btn-add">
+        <img src="assets/Plus.png" alt="">
+        </a>
+      </div>
+    </div>
+  </div>
+
+          `
+  document.querySelector('.details').style.display='block'
+  body.style.overflow='hidden'
+  document.querySelector('.hero').style.backgroundImage = `url("https://image.tmdb.org/t/p/w1280${data.backdrop_path}")`;
+}
+
 
 
 document.addEventListener('DOMContentLoaded', initApp);
+
