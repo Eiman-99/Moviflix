@@ -3,6 +3,7 @@ const categoryWrappers = document.querySelectorAll('.watchSuggestions__wrapper')
 const seriesGenreWrapper = document.querySelectorAll('.genre__wrapper');
 const API_KEY = 'cc687401dafd56a04490baaaa29e1329';
 const API_URL = 'https://api.themoviedb.org/3/';
+const body = document.body;
 
 function initApp() {
   if (pathName === '/' || pathName === '/index.html'  ) {
@@ -24,7 +25,7 @@ const getData = function(endpoint, swiperContainer) {
     .then(response => response.json())
     .then(data => {
       const {results} = data
-      console.log(results)
+      // console.log(results)
       renderSwiper(results, swiperContainer);
     }).catch(err => console.log(err));
 };
@@ -46,7 +47,13 @@ const getDetails = function(type, id){
   .then(response=>response.json())
   .then(data=>{
     console.log(data)
-    createDetailsSection(data)
+    // fetch tv or movie cast
+    fetch(`${API_URL}${type}/${id}/credits?api_key=${API_KEY}`)
+    .then(response=>response.json())
+    .then(credit=>{
+      // console.log(credit.cast)
+      createDetailsSection(data, credit.cast)
+    })
   }).catch(err => console.log(err))
 }
 
@@ -162,17 +169,27 @@ function renderMovieOrSeriesDetails(){
 
 }
 
-function createDetailsSection(data){
-  const body = document.body;
+function createDetailsSection(data,cast){
   const detailsPopUp = document.createElement('section')
   detailsPopUp.classList='details'
   body.append(detailsPopUp)
   const detailsContent = document.createElement('div')
   detailsContent.classList='details__content'
   detailsPopUp.append(detailsContent)
+
+  let duration = '';
+
+  if (data.seasons) {
+    duration = `${data.number_of_seasons} Seasons`;
+  } else if (data.runtime) {
+    const hours = Math.floor(data.runtime / 60);
+    const mins = data.runtime % 60;
+    duration = `${hours}h ${mins}m`;
+  }
   
   detailsContent.innerHTML=`
          <div class="hero">
+         <div class="close-btn" onclick=closeDetailsPopup()><img src='assets/close.png' alt=''></div>
         <div class="hero__wrapper">
         <h2 class="hero__title">${data.name || data.title}</h2>
       <div class="hero__btns">
@@ -186,14 +203,51 @@ function createDetailsSection(data){
       </div>
     </div>
   </div>
+  <div class="media-info">
+    <div class="container flex">
+    <div class="media-info__left">
+    <div class="media-info__wrapper">
+    <span class="media-info__year">${data.last_air_date?.split('-')[0] || data.release_date?.split('-')[0]}</span>
+    <span class="media-info__duration">${duration}</span>
+    <span class="media-info__badge"><img src="assets/hd.png" alt=""></span>
+    <span class="media-info__badge"><img src="assets/AD.png" alt=""></span>
+    <span class="media-info__badge"><img src="assets/subtitles.png" alt=""></span>
+    </div>
+    <p class="media-info__description">${data.overview.slice(0,250)}... <a class='view-more'>More</a></p>
+  </div>
 
-          `
+  <div class="media-info__right">
+  ${cast.length ? `
+      <p class="media-info__cast">
+        <span class="white">Cast:</span>
+        ${cast.slice(0, 4).map(person => `<span>${person.name}</span>`)}
+      </p>` : ''}    
+  <p class="media-info__genre"><span class="white">Genre:</span> ${data.genres.map(genre=>`<span>${genre.name}</span>`)}</p>
+  </div>
+</div>
+</div>
+      `
   document.querySelector('.details').style.display='block'
   body.style.overflow='hidden'
   document.querySelector('.hero').style.backgroundImage = `url("https://image.tmdb.org/t/p/w1280${data.backdrop_path}")`;
+
+  // close when clicking on the overlay 
+  detailsPopUp.addEventListener('click', (e) => {
+  if (e.target === detailsPopUp) {
+    closeDetailsPopup();
+  }
+});
+}
+
+// close details popup
+function closeDetailsPopup(){
+  document.querySelector('.details').style.display='none'
+  body.style.overflow='auto'
 }
 
 
 
 document.addEventListener('DOMContentLoaded', initApp);
+
+
 
