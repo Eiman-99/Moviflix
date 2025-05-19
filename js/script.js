@@ -7,6 +7,8 @@ const body = document.body;
 
 let reviews = []
 
+let userName = null
+
 function initApp() {
   if (pathName === '/' || pathName === '/index.html'  ) {
     renderAll();
@@ -292,6 +294,16 @@ function renderReviews(reviews){
 function setToLocalStorage(id){
   localStorage.setItem(id, JSON.stringify(reviews))
 }
+
+function signIn(){
+  fetch(`http://localhost:3000/users`)
+  .then(response=>response.json())
+  .then(users=>{
+    console.log(users)
+  }).catch(err=>console.log(err))
+}
+
+signIn()
 
 document.addEventListener('DOMContentLoaded', initApp);
 
