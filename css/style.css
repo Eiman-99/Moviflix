@@ -447,5 +447,117 @@ img{
 }
 
 
+/* login */
+.login{
+    padding: 2rem 0;
+    background: url("/assets/login-bg.png") no-repeat top center/cover ;
+    height: 100vh;
+}
 
+.login__logo {
+    display: inline-block;
+    width: 9rem;
+}
 
+.login__container {
+  background-color: rgba(0, 0, 0, 0.75);
+  padding: 2.5rem;
+  border-radius: 0.2rem;
+  width: 30%;
+  color: white;
+  margin: auto;
+  margin-top: 5rem;
+}
+
+.login__container h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+form input[type="email"],
+form input[type="password"] {
+  width: 100%;
+  padding: 0.8rem 0.75rem;
+  margin-bottom: 1rem;
+  border: none;
+  border-radius: 0.25rem;
+  background-color: rgba(26, 26, 26, 0.593);
+  color: white;
+  border: 1px solid #5c5c5c;
+}
+
+form input:focus{
+ outline: none;
+}
+
+form button {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #e50914;
+  color: white;
+  border: none;
+  border-radius: 0.25rem;
+  font-weight: bold;
+  cursor: pointer;
+  margin-bottom: 1rem;
+}
+
+form .code-button {
+  background-color: #555;
+}
+
+form .code-button:hover {
+  background-color: #666;
+}
+
+.or {
+  text-align: center;
+  color: #aaa;
+  margin-bottom: 1rem;
+}
+
+.options {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.875rem;
+  color: #bbb;
+  margin-bottom: 1.5rem;
+}
+
+.options a {
+  color: #bbb;
+  text-decoration: none;
+}
+
+.options a:hover {
+  text-decoration: underline;
+}
+
+.signup {
+  font-size: 0.875rem;
+  color: #bbb;
+  margin-bottom: 1rem;
+}
+
+.signup a {
+  color: white;
+  text-decoration: none;
+}
+
+.signup a:hover {
+  text-decoration: underline;
+}
+
+.captcha-info {
+  font-size: 0.75rem;
+  color: #666;
+}
+
+.captcha-info a {
+  color: #3b82f6;
+  text-decoration: none;
+}
+
+.captcha-info a:hover {
+  text-decoration: underline;
+}
