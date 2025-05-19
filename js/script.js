@@ -22,6 +22,7 @@ function initApp() {
     renderAllMovies()
     renderMovieOrSeriesDetails()
   }
+
 }
 
 const getData = function(endpoint, swiperContainer) {
@@ -295,15 +296,26 @@ function setToLocalStorage(id){
   localStorage.setItem(id, JSON.stringify(reviews))
 }
 
-function signIn(){
-  fetch(`http://localhost:3000/users`)
-  .then(response=>response.json())
-  .then(users=>{
-    console.log(users)
-  }).catch(err=>console.log(err))
+// function signIn(){
+//   fetch(`http://localhost:3000/users`)
+//   .then(response=>response.json())
+//   .then(users=>{
+//     console.log(users)
+//   }).catch(err=>console.log(err))
+// }
+
+// signIn()
+
+function toggleNavbarBackground(){
+  const navbar = document.querySelector('header')
+  if(window.scrollY>0){
+    navbar.classList.add('navbar-scroll')
+  }else{
+    navbar.classList.remove('navbar-scroll')
+  }
 }
 
-signIn()
+window.addEventListener('scroll', toggleNavbarBackground);
 
 document.addEventListener('DOMContentLoaded', initApp);
 

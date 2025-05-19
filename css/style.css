@@ -70,6 +70,14 @@ header{
     position: fixed;
     width: 100%;
     padding: 1rem 0;
+    z-index: 1000;
+    transition: all 0.3s ease; /* 👈 smooth transition */
+}
+
+.navbar-scroll{
+  /* background: linear-gradient(to bottom , #000000f0 , #232323e7); */
+  background: #141414f0;
+  backdrop-filter: blur(10px);
 }
 
 header .container{
