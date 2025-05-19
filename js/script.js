@@ -5,6 +5,8 @@ const API_KEY = 'cc687401dafd56a04490baaaa29e1329';
 const API_URL = 'https://api.themoviedb.org/3/';
 const body = document.body;
 
+let reviews = []
+
 function initApp() {
   if (pathName === '/' || pathName === '/index.html'  ) {
     renderAll();
@@ -204,7 +206,7 @@ function createDetailsSection(data,cast){
     </div>
   </div>
   <div class="media-info">
-    <div class="container flex">
+    <div class="media__container flex">
     <div class="media-info__left">
     <div class="media-info__wrapper">
     <span class="media-info__year">${data.last_air_date?.split('-')[0] || data.release_date?.split('-')[0]}</span>
@@ -226,7 +228,17 @@ function createDetailsSection(data,cast){
   </div>
 </div>
 </div>
-      `
+      <div class="media__reviews">
+      <div class="media__container">
+  <h3 class="review__title">Leave a review</h3>
+  <form onsubmit="addReview(event, ${data.id})">
+    <textarea  class="review__textarea" id="review__text" placeholder="Write your review..." required></textarea>
+    <button type="submit" class="btn-submit btn">Submit</button>
+  </form>
+  <div class="reviews__container"></div>
+</div>
+</div>
+`
   document.querySelector('.details').style.display='block'
   body.style.overflow='hidden'
   document.querySelector('.hero').style.backgroundImage = `url("https://image.tmdb.org/t/p/w1280${data.backdrop_path}")`;
@@ -237,15 +249,49 @@ function createDetailsSection(data,cast){
     closeDetailsPopup();
   }
 });
+  // get the reviews from loacal storage based on media ID
+  if (localStorage.getItem(data.id) !== null) {
+    reviews = JSON.parse(localStorage.getItem(data.id));
+    renderReviews(reviews);
+  }
+
 }
 
 // close details popup
 function closeDetailsPopup(){
   document.querySelector('.details').style.display='none'
   body.style.overflow='auto'
+  window.history.back()
 }
 
+//add reviews
+function addReview(e,id){
+  e.preventDefault()
+  const reviewContent = document.querySelector('.review__textarea')
+  console.log(reviewContent.value)
+  reviews.push({userName:'eman',review:reviewContent.value})
+  renderReviews(reviews)
+  reviewContent.value=''
+  setToLocalStorage(id)
+}
 
+function renderReviews(reviews){
+  let reviewsLists = ''
+  const reviewsContainer = document.querySelector('.reviews__container')
+  reviews.forEach(review=>{
+  reviewsLists += `<li>
+                   <h4>${review.userName}</h4>
+                   <p>${review.review}</p>
+                   </li>`
+  })
+
+  reviewsContainer.innerHTML = reviewsLists
+  console.log(reviewsContainer)
+}
+
+function setToLocalStorage(id){
+  localStorage.setItem(id, JSON.stringify(reviews))
+}
 
 document.addEventListener('DOMContentLoaded', initApp);
 

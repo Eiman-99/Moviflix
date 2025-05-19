@@ -204,13 +204,16 @@ img{
     margin: 0 auto;
     height: 100%;
     border-radius: 10px 10px 0 0;
+    height: 100vh;
+    padding-bottom: 4rem;
+    overflow: auto;
 }
 
 .hero{
     background-position: top center;
     background-repeat: no-repeat;
     background-size: cover;
-    height: 25%;
+    height: 63%;
     border-radius: 10px 10px 0 0;
     position: relative;
     display: flex;
@@ -261,7 +264,8 @@ img{
     font-size: 0.875rem;
 }
 
-.media-info .container{
+.media__container{
+    margin: 0 auto;
     width: 85%;
     gap:3rem ;
 }
@@ -305,4 +309,78 @@ img{
 
 .view-more{
     cursor: pointer;
+}
+
+/* media reviews */
+.media__reviews {
+  margin-top: 3rem;
+}
+
+.review__title {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+.review__textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  font-family: inherit;
+  border: 1px solid #303030;
+  border-radius: 4px;
+  min-height: 5rem;
+  resize: vertical;
+  background: none;
+  color: #fff;
+}
+
+.review__textarea:focus{
+    outline: none;
+    border: 1px solid #999999;
+}
+
+.btn-submit{
+    border: none;
+    background: #E50814;
+    color: #fff;
+    cursor: pointer;
+}
+
+.reviews__container {
+  margin-top: 15px;
+  padding: 10px;
+}
+
+.reviews__container li{
+    padding: 1rem 0;
+}
+
+.reviews__container li:not(:last-child){
+    border-bottom: 1px solid #303030;
+}
+
+.reviews__container h4{
+    margin-bottom: 0.6rem;
+    font-size: 0.875rem;
+}
+
+.reviews__container p{
+    font-size: 0.875rem;
+    color: #d7d7d7;
+}
+
+
+
+/* scroll */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #181818;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2d2d2dae;
+  border-radius: 10px;
 }
