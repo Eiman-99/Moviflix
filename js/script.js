@@ -240,7 +240,7 @@ function createDetailsSection(data,cast){
 </div>
 `
   document.querySelector('.details').style.display='block'
-  body.style.overflow='hidden'
+  // body.style.overflow='hidden'
   document.querySelector('.hero').style.backgroundImage = `url("https://image.tmdb.org/t/p/w1280${data.backdrop_path}")`;
 
   // close when clicking on the overlay 
