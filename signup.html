@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
+    <script src="js/script.js" defer></script>
     <title>Document</title>
 </head>
 <body>
@@ -17,10 +18,10 @@
         <h2 class="register__headline">Unlimited movies, TV <br>shows, and more</h2>
         <p class="register__subtext">Starts at EGP 100. Cancel anytime.</p>
         <p class="regiter__prompt">Ready to watch? Enter your email to create or restart your membership.</p>
-        <form class="register__form flex">
-            <input type="text" placeholder="Name" required />
-            <input type="email" placeholder="Email address" required />
-            <input type="password" placeholder="Password" required />
+        <form class="register__form flex" id="register-form">
+            <input type="text" id="user-name" placeholder="Fisrt Name" required />
+            <input type="email" id="register-email" placeholder="Email address" required />
+            <input type="password" id="register-password" placeholder="Password" required />
             <button type="submit" class="signIn-btn btn">Get Started <div class="wrapper"><img src="assets/right-arrow.png" alt=""></div></button>
         </form>
         </div>

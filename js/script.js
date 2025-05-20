@@ -4,6 +4,7 @@ const seriesGenreWrapper = document.querySelectorAll('.genre__wrapper');
 const API_KEY = 'cc687401dafd56a04490baaaa29e1329';
 const API_URL = 'https://api.themoviedb.org/3/';
 const body = document.body;
+const registerForm = document.getElementById('register-form')
 
 let reviews = []
 
@@ -21,6 +22,10 @@ function initApp() {
   else if(pathName === '/films.html'){
     renderAllMovies()
     renderMovieOrSeriesDetails()
+  }
+  else if(pathName === '/signup.html')
+  {
+    registerForm.addEventListener('submit', signUp);
   }
 
 }
@@ -296,32 +301,34 @@ function setToLocalStorage(id){
   localStorage.setItem(id, JSON.stringify(reviews))
 }
 
-function signUp() {
-  fetch('https://sun-inquisitive-leotard.glitch.me/users', {
+function signUp(e) {
+  e.preventDefault();
+  const userName = document.getElementById('user-name').value
+  const email= document.getElementById('register-email').value 
+  const password = document.getElementById('register-password').value
+
+  fetch(`https://sun-inquisitive-leotard.glitch.me/users?email=${email}`).then(res=>res.json())
+  .then(user=>{
+    if(user.length > 0){
+      alert('email already exist!')
+      return
+    }
+
+   fetch('https://sun-inquisitive-leotard.glitch.me/users', {
     method: 'POST',
      headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({userName:"boba", email: "boba@gmail.com", password: "pewpew" })
+    body: JSON.stringify({userName, email, password})
   })
   .then(res => res.json())
   .then(user => console.log(user))
   .catch(err => console.error(err));
+  })
+  .catch(err=>console.error(err))
+
+
 }
-
-signUp()
-
-// signIn()
-
-// function signIn(){
-//   fetch(`http://localhost:3000/users`)
-//   .then(response=>response.json())
-//   .then(users=>{
-//     console.log(users)
-//   }).catch(err=>console.log(err))
-// }
-
-// signIn()
 
 function toggleNavbarBackground(){
   const navbar = document.querySelector('header')

@@ -110,6 +110,10 @@ img{
     width: 100%;
 }
 
+button{
+  cursor: pointer;
+}
+
 .logo-wrapper{
     width: 6rem;
 }
