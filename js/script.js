@@ -194,7 +194,7 @@ function createDetailsSection(data,cast){
   
   detailsContent.innerHTML=`
          <div class="hero">
-         <div class="close-btn" onclick=closeDetailsPopup()><img src='assets/close.png' alt=''></div>
+         <div class="close-btn" onclick="closeDetailsPopup()"><img src='assets/close.png' alt='close'></div>
         <div class="hero__wrapper">
         <h2 class="hero__title">${data.name || data.title}</h2>
       <div class="hero__btns">
@@ -295,6 +295,23 @@ function renderReviews(reviews){
 function setToLocalStorage(id){
   localStorage.setItem(id, JSON.stringify(reviews))
 }
+
+function signUp() {
+  fetch('https://sun-inquisitive-leotard.glitch.me/users', {
+    method: 'POST',
+     headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({userName:"boba", email: "boba@gmail.com", password: "pewpew" })
+  })
+  .then(res => res.json())
+  .then(user => console.log(user))
+  .catch(err => console.error(err));
+}
+
+signUp()
+
+// signIn()
 
 // function signIn(){
 //   fetch(`http://localhost:3000/users`)

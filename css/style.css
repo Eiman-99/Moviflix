@@ -10,7 +10,7 @@
 
 :root{
     --container-width: 92%;
-    --color-primary: #CA1D0A;
+    --color-primary: #E50814;
     --color-secondary: #fff;
     --color-grey: #E1E1E1;
     --text-lg: 1.25rem;
@@ -66,11 +66,15 @@ ul{
     /* flex-wrap: wrap; */
 }
 
+img{
+  width: 100%;
+}
+
 header{
     position: fixed;
     width: 100%;
     padding: 1rem 0;
-    z-index: 1000;
+    z-index: 100;
     transition: all 0.3s ease; /* 👈 smooth transition */
 }
 
@@ -265,7 +269,7 @@ img{
     height: 100%;
     background: #000000d0;
     display: none;
-    z-index: 1;
+    z-index: 1000;
     padding-top: 2rem;
     overflow: auto;
 }
@@ -526,7 +530,7 @@ img{
     height: 100vh;
 }
 
-.login__logo {
+.login__logo, .register__logo  {
     display: inline-block;
     width: 9rem;
 }
@@ -546,8 +550,8 @@ img{
   margin-bottom: 1.5rem;
 }
 
-form input[type="email"],
-form input[type="password"] {
+.login form input[type="email"],
+.login form input[type="password"] {
   width: 100%;
   padding: 0.8rem 0.75rem;
   margin-bottom: 1rem;
@@ -565,7 +569,7 @@ form input[type="password"] {
 .login form button {
   width: 100%;
   padding: 0.75rem;
-  background-color: #e50914;
+  background-color: var(--color-primary);
   color: white;
   border: none;
   border-radius: 0.25rem;
@@ -575,11 +579,11 @@ form input[type="password"] {
 }
 
 form .code-button {
-  background-color: #555;
+  background-color: #555 !important;
 }
 
 form .code-button:hover {
-  background-color: #666;
+  background-color: #666 !important;
 }
 
 .or {
@@ -633,3 +637,79 @@ form .code-button:hover {
 .captcha-info a:hover {
   text-decoration: underline;
 }
+
+/* register */
+.register{
+    padding: 2rem 0;
+    background: url("/assets/register-bg.png") no-repeat top center/cover ;
+    height: 100vh;
+}
+
+.register nav{
+  align-items: center;
+}
+
+.register .signin-btn{
+  background: var(--color-primary);
+  padding: 0.5rem 0.95rem;
+  font-weight: 600;
+}
+
+.register__container{
+  padding-top: 10rem;
+  margin: auto;
+  text-align: center;
+}
+
+.register__headline{
+  font-size: 3.5rem;
+  text-align: center;
+  font-weight: 900;
+  margin-bottom: 1.2rem;
+  /* width: 50%; */
+  margin:0 auto 1.5rem;
+}
+
+.register__subtext{
+  font-weight: 600;
+  font-size: 1.2rem;
+  margin-bottom: 2.2rem;
+}
+
+.register form{
+  margin-top: 1.2rem;
+  justify-content: center;
+  gap: 0.7rem;
+  width: 70%;
+  margin: 1.2rem auto;
+}
+
+.register form input{
+  padding: 1.2rem 0.5rem;
+  background: #0f0f0fdd;
+  border: 1px solid #676767;
+  border-radius: 0.25rem;
+  width: 25%;
+  color: #fff;
+}
+
+.register form ::placeholder{
+  color: #afafaf;
+}
+
+.register form button{
+  background: var(--color-primary);
+  color: #fff;
+  border: none;
+  font-size: 1.5rem;
+  font-weight: 500;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.register button .wrapper{
+  width: 0.7rem;
+}
+
