@@ -54,6 +54,14 @@ li{
     list-style: none;
 }
 
+img{
+  width: 100%;
+}
+
+button{
+  cursor: pointer;
+}
+
 ul{
     display: flex;
     gap: 1rem;
@@ -64,10 +72,6 @@ ul{
     display: flex;
     justify-content: space-between;
     /* flex-wrap: wrap; */
-}
-
-img{
-  width: 100%;
 }
 
 header{
@@ -104,14 +108,6 @@ nav{
 
 .active{
     color: #fff !important;
-}
-
-img{
-    width: 100%;
-}
-
-button{
-  cursor: pointer;
 }
 
 .logo-wrapper{
@@ -681,19 +677,24 @@ form .code-button:hover {
 }
 
 .register form{
-  margin-top: 1.2rem;
   justify-content: center;
   gap: 0.7rem;
   width: 70%;
   margin: 1.2rem auto;
 }
 
+.form__group {
+  display: flex;
+  flex-direction: column;
+}
+
+
 .register form input{
   padding: 1.2rem 0.5rem;
   background: #0f0f0fdd;
   border: 1px solid #676767;
   border-radius: 0.25rem;
-  width: 25%;
+  width: 20%;  
   color: #fff;
 }
 
@@ -711,7 +712,10 @@ form .code-button:hover {
   gap: 1rem;
   align-items: center;
   justify-content: center;
+  
+  /* padding: 1.2rem 0.5rem !important; */
 }
+
 
 .register button .wrapper{
   width: 0.7rem;

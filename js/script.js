@@ -303,14 +303,24 @@ function setToLocalStorage(id){
 
 function signUp(e) {
   e.preventDefault();
+  // reset
+  document.getElementById('register-email').style.borderColor = '';
+  document.getElementById('register-password').style.borderColor = '';
+
   const userName = document.getElementById('user-name').value
   const email= document.getElementById('register-email').value 
   const password = document.getElementById('register-password').value
-
   fetch(`https://sun-inquisitive-leotard.glitch.me/users?email=${email}`).then(res=>res.json())
   .then(user=>{
     if(user.length > 0){
-      alert('email already exist!')
+      document.getElementById('register-email').style.borderColor = 'red';
+      showToast('Email already exists', 'error')
+      return
+    }
+
+    if(password.length < 6){
+      document.getElementById('register-password').style.borderColor = 'red';
+      showToast("Password must be at least 6 characters", "error");
       return
     }
 
@@ -322,12 +332,13 @@ function signUp(e) {
     body: JSON.stringify({userName, email, password})
   })
   .then(res => res.json())
-  .then(user => console.log(user))
+  .then(user => {
+    console.log(user)
+    window.location.href = 'index.html';
+  })
   .catch(err => console.error(err));
   })
   .catch(err=>console.error(err))
-
-
 }
 
 function toggleNavbarBackground(){
@@ -337,6 +348,33 @@ function toggleNavbarBackground(){
   }else{
     navbar.classList.remove('navbar-scroll')
   }
+}
+
+
+// show pop up messages
+function showToast(message, type) {
+  let bgColor;
+
+  switch (type) {
+    case "success":
+      bgColor = "green";
+      break;
+    case "error":
+      bgColor = "#E50814";
+      break;
+    default:
+      bgColor = "#333";
+  }
+
+  Toastify({
+    text: message,
+    duration: 3000,
+    gravity: "top",
+    position: "center",
+    style: {
+    background: bgColor,
+  },
+  }).showToast();
 }
 
 window.addEventListener('scroll', toggleNavbarBackground);
