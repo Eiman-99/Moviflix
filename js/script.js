@@ -5,10 +5,11 @@ const API_KEY = 'cc687401dafd56a04490baaaa29e1329';
 const API_URL = 'https://api.themoviedb.org/3/';
 const body = document.body;
 const registerForm = document.getElementById('register-form')
+const loginForm = document.getElementById('login-form')
 
 let reviews = []
 
-let userName = null
+let currentUser = null
 
 function initApp() {
   if (pathName === '/' || pathName === '/index.html'  ) {
@@ -27,6 +28,16 @@ function initApp() {
   {
     registerForm.addEventListener('submit', signUp);
   }
+  else if(pathName === '/login.html')
+  {
+    loginForm.addEventListener('submit', login);
+  }
+
+  if(localStorage.getItem('currentUser') !== null){
+    currentUser = JSON.parse(localStorage.getItem('currentUser'))
+  }
+
+  console.log('current user-->',currentUser)
 
 }
 
@@ -310,8 +321,7 @@ function signUp(e) {
   const userName = document.getElementById('user-name').value
   const email= document.getElementById('register-email').value 
   const password = document.getElementById('register-password').value
-  fetch(`https://sun-inquisitive-leotard.glitch.me/users?email=${email}`).then(res=>res.json())
-  .then(user=>{
+  fetchUserByEmail(email).then(user=>{
     if(user.length > 0){
       document.getElementById('register-email').style.borderColor = 'red';
       showToast('Email already exists', 'error')
@@ -340,6 +350,36 @@ function signUp(e) {
   })
   .catch(err=>console.error(err))
 }
+
+function login(e){
+  e.preventDefault()
+  const email = document.getElementById('login-email').value
+  const password = document.getElementById('login-password').value
+  fetchUserByEmail(email)
+  .then(user=>{
+    console.log(user)
+    if(user.length === 0) {
+      showToast("Email doesn't match!", "error")
+      return
+    }
+    if(user[0].password !== password){
+      showToast('Wrong password!', 'error')
+      return
+    }
+
+    // login successful
+    localStorage.setItem('currentUser',JSON.stringify(user[0]))
+    window.location.href='/'
+  })
+  .catch(err=>console.error(err))
+}
+
+function fetchUserByEmail(email) {
+  return fetch(`https://sun-inquisitive-leotard.glitch.me/users?email=${email}`)
+    .then(res => res.json());
+}
+
+
 
 function toggleNavbarBackground(){
   const navbar = document.querySelector('header')
