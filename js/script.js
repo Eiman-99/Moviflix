@@ -7,12 +7,16 @@ const body = document.body;
 const registerForm = document.getElementById('register-form')
 const loginForm = document.getElementById('login-form')
 const signOutBtn = document.querySelector('.signout-btn')
+const dropdown = document.querySelector('.dropdown-content')
 
 let reviews = []
 
 let currentUser = null
 
 function initApp() {
+
+  renderDropDown()
+
   if (pathName === '/' || pathName === '/index.html'  ) {
     renderAll();
     renderMovieOrSeriesDetails()
@@ -33,12 +37,6 @@ function initApp() {
   {
     loginForm.addEventListener('submit', login);
   }
-
-  if(localStorage.getItem('currentUser') !== null){
-    currentUser = JSON.parse(localStorage.getItem('currentUser'))
-  }
-
-  signOut()
 
   console.log('current user-->',currentUser)
 
@@ -291,7 +289,7 @@ function addReview(e,id){
   e.preventDefault()
   const reviewContent = document.querySelector('.review__textarea')
   console.log(reviewContent.value)
-  reviews.push({userName:'eman',review:reviewContent.value})
+  reviews.push({userName:currentUser.userName ,review:reviewContent.value})
   renderReviews(reviews)
   reviewContent.value=''
   setToLocalStorage(id)
@@ -347,7 +345,8 @@ function signUp(e) {
   .then(res => res.json())
   .then(user => {
     console.log(user)
-    window.location.href = 'index.html';
+    localStorage.setItem('currentUser', JSON.stringify(user));
+    window.location.href = '/';
   })
   .catch(err => console.error(err));
   })
@@ -356,22 +355,28 @@ function signUp(e) {
 
 function login(e){
   e.preventDefault()
+    // reset
+  document.getElementById('login-email').style.borderColor = '';
+  document.getElementById('login-password').style.borderColor = '';
+
   const email = document.getElementById('login-email').value
   const password = document.getElementById('login-password').value
   fetchUserByEmail(email)
-  .then(user=>{
-    console.log(user)
-    if(user.length === 0) {
+  .then(users=>{
+    console.log(users)
+    if(users.length === 0) {
+      document.getElementById('login-email').style.borderColor = 'red';
       showToast("Email doesn't match!", "error")
       return
     }
-    if(user[0].password !== password){
+    if(users[0].password !== password){
+      document.getElementById('login-email').style.borderColor = 'red';
       showToast('Wrong password!', 'error')
       return
     }
 
     // login successful
-    localStorage.setItem('currentUser',JSON.stringify(user[0]))
+    localStorage.setItem('currentUser',JSON.stringify(users[0]))
     window.location.href='/'
   })
   .catch(err=>console.error(err))
@@ -419,16 +424,33 @@ function showToast(message, type) {
   },
   }).showToast();
 }
+function renderDropDown(){
+   if(localStorage.getItem('currentUser') !== null){
+    currentUser = JSON.parse(localStorage.getItem('currentUser'))
+  }
+  if (!dropdown) return;
+  dropdown.innerHTML = `
+    <a class="mini-profile"> 
+      <img src="assets/profile.png" alt="">
+      <span id="dropdown-username">${currentUser ? currentUser.userName : 'Unknown'}</span>
+    </a>
+    <a href="${currentUser ? '#' : '/login.html'}" class="signout-btn center">
+      ${currentUser ? 'Sign out' : 'Login'}
+    </a>`;
 
-// reset the current user to null when logged out
-function signOut(){
-  if (signOutBtn) {
-    signOutBtn.addEventListener('click', function(){
-      currentUser = null;
+  // attach signout event listener if logged in
+  if (currentUser) {
+    const signOutBtn = dropdown.querySelector('.signout-btn');
+    signOutBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      // reset the current user on sign out
+      // currentUser = null;
       localStorage.removeItem('currentUser');
+      window.location.href = '/login.html';
     });
   }
 }
+
 
 
 window.addEventListener('scroll', toggleNavbarBackground);
