@@ -719,3 +719,24 @@ form .code-button:hover {
   width: 0.7rem;
 }
 
+
+
+/* coming soon */
+.coming-soon, .my-list{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 2rem;
+  height: 100vh;
+  color: #9f9f9f;
+}
+
+.coming-soon h2, .my-list h2{
+  font-size: 2rem;
+}
+
+.coming-soon p, .my-list p{
+  font-size: 1.2rem;
+}
+

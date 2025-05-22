@@ -3,18 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
     <link rel="stylesheet" href="css/style.css">
     <script src="js/script.js" defer></script>
     <link
   rel="stylesheet"
   href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
 />
-
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <title>Netflix</title>
 </head>
 <body>
-    <header>
+ <header>
         <div class="container">
             <nav>
                 <a href="/" class="logo"><div class="logo-wrapper"><img src="assets/logo.png" alt="logo"></div></a>
@@ -39,90 +38,62 @@
             </button>
             <input placeholder="search" class="input" name="text" type="text">
             </div>  
-
             <div class="navbar__notification"><img src="assets/Notifications.png" alt="Notifications"></div>
-            
-
             <div class="navbar__profile dropdown">
             <a class="dropbtn"><img src="assets/profile.png" alt=""/></a>
             <div class="dropdown-content">
-
+            <a class="mini-profile">
+                <img src="assets/profile.png" alt="">
+                <span id="dropdown-username">userName</span>
+            </a>
+            <a href="/login.html" class="signout-btn center">Sign out</a>
             </div>
 
             </div>
-
             </div>
         </div>
     </header>
 
-    <section class="banner">
-        <div class="container">
-        <div class="banner__content">
-            <div class="banner__badge">
-                <img src="assets/Nseries.png" alt="">
-            </div>
-            <div class="banner__title">
-                <img src="assets/banner-logo.png" alt="">
-            </div>
-            <p class="banner__description">
-                <!-- A charming first encounter quickly turns into something more nefarious when bookstore manager 
-                Joe takes a very strong liking to grad student Beck. -->
-                When her son vanishes inside a US consulate, ex-special forces soldier Sara does everything in 
-                her power to find him — and uncovers a dark conspiracy.
-            </p>
-            <div class="banner__btns">
-                <a href="#" class="banner__btn-play btn-primary btn"><img src="assets/play.png" alt=""> <span>Play<span></a>
-                <a href="#" class="banner__btn-info btn-light btn"><img src="assets/info.png" alt=""> <span>More Info<span> </a>
-            </div>
-        </div>
+    <div class="genres__wrapper">
 
-        <div class="next-watch">
-        <h2 class="watchSuggestions__title">Your Next Watch</h2>
-        <div class="watchSuggestions__wrapper ">
-
-        <!-- Slider main container -->
-        <!-- <div class="swiper">
-        
-        <div class="swiper-wrapper"></div> 
-
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-button-next"></div>
-
-        </div> -->
-        </div>
-        </div>
-    </div>
-    </section>
-
-    <section class="top_rated">
+    <section>
     <div class="container">
-    <h2 class="watchSuggestions__title">Top Rated</h2>
-     <div class="watchSuggestions__wrapper">
+    <h2 class="genre__title">Top Rated TV Shows</h2>
+     <div class="genre__wrapper">
+
+    </div>
+    </div>
+    </section>
+
+    <section>
+    <div class="container">
+    <h2 class="genre__title">Top Rated Movies</h2>
+     <div class="genre__wrapper">
+
+    </div>
+    </div>
+    </section>
+
+    <section>
+    <div class="container">
+    <h2 class="genre__title">Trending Movies Today</h2>
+     <div class="genre__wrapper">
 
     </div>
     </div>
     </section>
 
 
-     <section class="tv_shows">
-    <div class="container"> 
-     <h2 class="watchSuggestions__title">Tv Series</h2>
-     <div class="watchSuggestions__wrapper">
+    <section>
+    <div class="container">
+    <h2 class="genre__title">Trending TV Shows Today</h2>
+     <div class="genre__wrapper">
 
     </div>
     </div>
     </section>
 
-     <section class="films">
-    <div class="container"> 
-     <h2 class="watchSuggestions__title">Films</h2>
-     <div class="watchSuggestions__wrapper">
 
     </div>
-    </div>
-    </section>
-   
 </body>
-</html> 
-
-
+</html>

@@ -1,6 +1,6 @@
 const pathName = window.location.pathname;
 const categoryWrappers = document.querySelectorAll('.watchSuggestions__wrapper');
-const seriesGenreWrapper = document.querySelectorAll('.genre__wrapper');
+const genreWrapper = document.querySelectorAll('.genre__wrapper');
 const API_KEY = 'cc687401dafd56a04490baaaa29e1329';
 const API_URL = 'https://api.themoviedb.org/3/';
 const body = document.body;
@@ -37,6 +37,11 @@ function initApp() {
   else if(pathName === '/login.html')
   {
     loginForm.addEventListener('submit', login);
+  }
+  else if(pathName === '/trends.html')
+  {
+    renderTrends()
+    renderMovieOrSeriesDetails()
   }
 
   console.log('current user-->',currentUser)
@@ -142,7 +147,7 @@ function renderAll() {
 }
 
 function renderAllSeries(){
-  seriesGenreWrapper.forEach((wrapper, index) => {
+  genreWrapper.forEach((wrapper, index) => {
     // create a unique class for each swiper
     const swiperClass = `swiper-${index}`;
     wrapper.innerHTML = `
@@ -161,7 +166,7 @@ function renderAllSeries(){
 }
 
 function renderAllMovies(){
-  seriesGenreWrapper.forEach((wrapper, index) => {
+  genreWrapper.forEach((wrapper, index) => {
     // create a unique class for each swiper
     const swiperClass = `swiper-${index}`;
     wrapper.innerHTML = `
@@ -176,6 +181,30 @@ function renderAllMovies(){
 
    getGenre( 'movie' ,genreIds[index] ,`.${swiperClass}`);
 
+  });
+}
+
+function renderTrends(){
+  genreWrapper.forEach((wrapper, index) => {
+    // create a unique class for each swiper
+    const swiperClass = `swiper-${index}`;
+    wrapper.innerHTML = `
+      <div class="swiper ${swiperClass}">
+        <div class="swiper-wrapper"></div>
+        <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+      </div>
+    `;
+
+      const endpoints = [
+      'tv/top_rated',
+      'movie/top_rated',
+      'trending/movie/day',
+      'trending/tv/day'
+    ];
+    getData( endpoints[index] , `.${swiperClass}`);
+
+   
   });
 }
 
@@ -216,11 +245,11 @@ function createDetailsSection(data,cast){
         <div class="hero__wrapper">
         <h2 class="hero__title">${data.name || data.title}</h2>
       <div class="hero__btns">
-      <a href="" class="hero__btn-play btn-primary btn">
+      <a href="#" class="hero__btn-play btn-primary btn">
         <img src="assets/play.png" alt="">
         <span>Play</span>
         </a>
-      <a href="" class="hero__btn-add">
+      <a href="#" class="hero__btn-add">
         <img src="assets/Plus.png" alt="">
         </a>
       </div>
