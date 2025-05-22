@@ -6,8 +6,11 @@ const API_URL = 'https://api.themoviedb.org/3/';
 const body = document.body;
 const registerForm = document.getElementById('register-form')
 const loginForm = document.getElementById('login-form')
+<<<<<<< HEAD
 const signOutBtn = document.querySelector('.signout-btn')
 const dropdown = document.querySelector('.dropdown-content')
+=======
+>>>>>>> c862d48470529ee008962f7fc6963ea05ca90c32
 
 let reviews = []
 
@@ -353,34 +356,39 @@ function signUp(e) {
   .catch(err=>console.error(err))
 }
 
-function login(e){
-  e.preventDefault()
-    // reset
+function login(e) {
+  e.preventDefault();
+
+  // reset input styles
   document.getElementById('login-email').style.borderColor = '';
   document.getElementById('login-password').style.borderColor = '';
 
-  const email = document.getElementById('login-email').value
-  const password = document.getElementById('login-password').value
-  fetchUserByEmail(email)
-  .then(users=>{
-    console.log(users)
-    if(users.length === 0) {
-      document.getElementById('login-email').style.borderColor = 'red';
-      showToast("Email doesn't match!", "error")
-      return
-    }
-    if(users[0].password !== password){
-      document.getElementById('login-email').style.borderColor = 'red';
-      showToast('Wrong password!', 'error')
-      return
-    }
+  const email = document.getElementById('login-email').value;
+  const password = document.getElementById('login-password').value;
 
-    // login successful
-    localStorage.setItem('currentUser',JSON.stringify(users[0]))
-    window.location.href='/'
-  })
-  .catch(err=>console.error(err))
+  fetchUserByEmail(email)
+    .then(users => {
+      console.log(users);
+
+      if (users.length === 0) {
+        document.getElementById('login-email').style.borderColor = 'red';
+        showToast("Email doesn't match!", "error");
+        return;
+      }
+
+      if (users[0].password !== password) {
+        document.getElementById('login-password').style.borderColor = 'red';
+        showToast('Wrong password!', 'error');
+        return;
+      }
+
+      // login successful
+      localStorage.setItem('currentUser', JSON.stringify(users[0]));
+      window.location.href = '/';
+    })
+    .catch(err => console.error(err));
 }
+
 
 function fetchUserByEmail(email) {
   return fetch(`https://sun-inquisitive-leotard.glitch.me/users?email=${email}`)
