@@ -317,6 +317,12 @@ function closeDetailsPopup(){
 //add reviews
 function addReview(e,id){
   e.preventDefault()
+
+  if(!currentUser){
+    showToast('You must login to add a review', 'error')
+    return
+  }
+
   const reviewContent = document.querySelector('.review__textarea')
   console.log(reviewContent.value)
   reviews.push({userName:currentUser.userName ,review:reviewContent.value})
