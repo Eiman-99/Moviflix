@@ -6,8 +6,16 @@ const API_URL = 'https://api.themoviedb.org/3/';
 const body = document.body;
 const registerForm = document.getElementById('register-form')
 const loginForm = document.getElementById('login-form')
+<<<<<<< HEAD
 const signOutBtn = document.querySelector('.signout-btn')
 const dropdown = document.querySelector('.dropdown-content')
+=======
+<<<<<<< HEAD
+const signOutBtn = document.querySelector('.signout-btn')
+const dropdown = document.querySelector('.dropdown-content')
+=======
+>>>>>>> c862d48470529ee008962f7fc6963ea05ca90c32
+>>>>>>> 3ef4dbb72e92edbba24067e94036c90972b744b1
 
 let reviews = []
 
