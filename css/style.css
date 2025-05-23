@@ -1,9 +1,14 @@
+@import url('queries.css');
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Overpass:ital,wght@0,100..900;1,100..900&display=swap');
 
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;       
+}
+
+html{
+  scroll-behavior: smooth;
 }
 
 /* variables */
@@ -145,6 +150,12 @@ nav{
 .dropdown {
   position: relative;
   display: inline-block;
+}
+
+.dropbtn{
+   display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .dropdown-content {
@@ -740,3 +751,20 @@ form .code-button:hover {
   font-size: 1.2rem;
 }
 
+/* responsive side nav */
+.logo-responsive{
+  display: none;
+}
+
+nav .closebtn {
+  display: none;
+  cursor: pointer;
+}
+
+.profile-sideNav{
+  display: none;
+}
+
+.signout-btn-navSide{
+  display: none;
+}

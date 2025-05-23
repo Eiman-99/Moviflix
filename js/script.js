@@ -4,10 +4,11 @@ const genreWrapper = document.querySelectorAll('.genre__wrapper');
 const API_KEY = 'cc687401dafd56a04490baaaa29e1329';
 const API_URL = 'https://api.themoviedb.org/3/';
 const body = document.body;
+const nav = document.querySelector('header nav') 
 const registerForm = document.getElementById('register-form')
 const loginForm = document.getElementById('login-form')
 const signOutBtn = document.querySelector('.signout-btn')
-const dropdown = document.querySelector('.dropdown-content')
+const dropdown = document.querySelector('.dropdown-content');
 
 
 let reviews = []
@@ -19,14 +20,17 @@ function initApp() {
   renderDropDown()
 
   if (pathName === '/' || pathName === '/index.html'  ) {
+    renderNavbar()
     renderAll();
     renderMovieOrSeriesDetails()
   }
   else if(pathName === '/series.html'){
+    renderNavbar()
     renderAllSeries()
     renderMovieOrSeriesDetails()    
   }
   else if(pathName === '/films.html'){
+    renderNavbar()
     renderAllMovies()
     renderMovieOrSeriesDetails()
   }
@@ -40,8 +44,17 @@ function initApp() {
   }
   else if(pathName === '/trends.html')
   {
+    renderNavbar()
     renderTrends()
     renderMovieOrSeriesDetails()
+  }
+  else if(pathName === '/myList.html')
+  {
+    renderNavbar()
+  }
+  else if(pathName === '/lang.html')
+  {
+    renderNavbar()
   }
 
   console.log('current user-->',currentUser)
@@ -491,6 +504,60 @@ function renderDropDown(){
     });
   }
 }
+
+function renderNavbar(){
+  nav.innerHTML = ` <a class="closebtn" onclick="closeNav()">&times;</a>
+                    <a href="/" class="logo"><div class="logo-wrapper"><img src="assets/logo.png" alt="logo"></div></a>
+                    <a class="profile-sideNav">
+                    <img src="assets/profile.png" alt="">
+                    <span id="dropdown-username">${currentUser ? currentUser.userName : 'Unknown'}</span>
+                    </a>
+                    <ul class="navbar__links">
+                    <li><a href="/index.html" class="navbar-link active">Home</a></li>
+                    <li><a href="/series.html" class="navbar__link">Tv Series</a></li>
+                    <li><a href="/films.html" class="navbar__link">Films</a></li>
+                    <li><a href="/trends.html" class="navbar__link">New & Popular</a></li>
+                    <li><a href="/myList.html" class="navbar__link">My List</a></li>
+                    <li><a href="/lang.html" class="navbar__link">Browse by Language</a></li>
+                    </ul>
+                    <a href="${currentUser ? '#' : '/login.html'}" class="signout-btn-navSide">
+                    ${currentUser ? 'Sign out' : 'Login'}
+                    </a>` 
+}
+
+function openNav() {
+  if (nav.classList.contains("sideNav")) {
+    nav.style.width = "20rem";
+  }
+}
+
+function closeNav() {
+  if (nav.classList.contains("sideNav")) {
+    nav.style.width = "0";
+  }
+}
+
+function handleMediaQueryChange(e) {
+  if (e.matches) {
+    if(nav){
+    nav.classList.add("sideNav")
+    dropdown.style.display = "none"
+    }
+
+  } else {
+    if(nav){
+    nav.classList.remove("sideNav")
+    nav.style.width = ""
+    dropdown.style.display = "block"
+    }
+  }
+}
+
+// create media query
+const mediaQuery = window.matchMedia("(max-width: 1065px)");
+handleMediaQueryChange(mediaQuery);
+
+mediaQuery.addEventListener("change", handleMediaQueryChange);
 
 
 

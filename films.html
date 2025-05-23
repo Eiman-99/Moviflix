@@ -16,16 +16,9 @@
 <body>
  <header>
         <div class="container">
+            <a href="/" class="logo logo-responsive"><div class="logo-wrapper"><img src="assets/logo.png" alt="logo"></div></a>
             <nav>
-                <a href="/" class="logo"><div class="logo-wrapper"><img src="assets/logo.png" alt="logo"></div></a>
-                <ul class="navbar__links">
-                    <li><a href="/index.html" class="navbar-link active">Home</a></li>
-                    <li><a href="/series.html" class="navbar__link">Tv Series</a></li>
-                    <li><a href="/films.html" class="navbar__link">Films</a></li>
-                    <li><a href="/trends.html" class="navbar__link">New & Popular</a></li>
-                    <li><a href="/myList.html" class="navbar__link">My List</a></li>
-                    <li><a href="/lang.html" class="navbar__link">Browse by Language</a></li>
-                </ul>
+                <!-- navbar -->
             </nav>
 
             <div class="navbar__actions">
@@ -40,7 +33,7 @@
             <input placeholder="search" class="input" name="text" type="text">
             </div>  
             <div class="navbar__notification"><img src="assets/Notifications.png" alt="Notifications"></div>
-            <div class="navbar__profile dropdown">
+            <div class="navbar__profile dropdown" onclick=openNav()>
             <a class="dropbtn"><img src="assets/profile.png" alt=""/></a>
             <div class="dropdown-content">
             <a class="mini-profile">
