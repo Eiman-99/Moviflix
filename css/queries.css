@@ -1,11 +1,7 @@
 @media(max-width:1175px){
     .icon:focus ~ .input,
     .input:focus {
-    box-shadow: none;
     width: 200px !important;
-    border-radius: 0px;
-    background-color: transparent;
-    border: 1px solid var(--color-grey);
     transition: all 400ms cubic-bezier(0, 0.110, 0.35, 1) !important;
     }
 }
@@ -69,9 +65,86 @@ nav .closeBtn {
   display: block !important;
   position: absolute;
   top: 0;
-  right: 25px;
-  font-size: 36px;
-  margin-left: 50px;
+  right: 1.5rem;
+  font-size: 2.25rem;
 }
 }
 
+@media (max-width:992px) {
+  .banner{
+    padding-top: 20% !important;  
+  }
+
+  .banner__btns{
+    margin-bottom: 3rem !important;
+  }
+
+  .banner__title{
+      width: 14rem !important;
+  }
+
+  .chat-trigger {
+  position: fixed;
+  bottom: 1rem;
+  right: 0.4rem !important;
+  width: 2.4rem !important;
+  height: 2.4rem !important;
+}
+}
+
+@media (max-width:768px) {
+  .banner__btns{
+    margin-bottom: 3rem !important;
+  }
+
+  .banner__badge{
+    width: 5rem !important;
+  }
+  
+  .banner__title{
+    width: 10rem !important;
+    margin: 1rem 0 !important;
+  }
+
+  .banner__description{
+    font-size: var(--text-sm) !important;
+    width: 80% !important;
+  }
+
+  .banner__btns span{ 
+    font-size: var(--text-sm) !important;
+
+  }
+
+  .banner__btns img{
+    width: 1rem !important;
+  }
+
+  .swiper-slide{
+    max-width: 8rem !important;
+  }
+}
+
+@media (max-width:576px){
+  .banner{
+    padding-top: 25% !important;
+  }
+
+  header .navbar__actions img{
+    width: 1.3rem !important;
+  }
+
+  .navbar__actions{
+    gap: 1rem !important;
+  }
+
+  .icon {
+    width: 1.2rem !important;
+    height: 1.2rem !important;
+  }
+
+  .icon:focus ~ .input,
+    .input:focus {
+    width: 150px !important;
+    }
+}
