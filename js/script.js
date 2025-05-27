@@ -58,6 +58,7 @@ function initApp() {
   }
 
   console.log('current user-->',currentUser)
+  initChatBot()
 
 }
 
@@ -506,7 +507,7 @@ function renderDropDown(){
 }
 
 function renderNavbar(){
-  nav.innerHTML = ` <a class="closebtn" onclick="closeNav()">&times;</a>
+  nav.innerHTML = ` <a class="closeBtn" onclick="closeNav()">&times;</a>
                     <a href="/" class="logo"><div class="logo-wrapper"><img src="assets/logo.png" alt="logo"></div></a>
                     <a class="profile-sideNav">
                     <img src="assets/profile.png" alt="">
@@ -559,11 +560,26 @@ handleMediaQueryChange(mediaQuery);
 
 mediaQuery.addEventListener("change", handleMediaQueryChange);
 
+// ---------------------------------------- //
+// chatbot
+function initChatBot () {
+  const chatWidget = document.querySelector(".chat-widget");
+  const closeBtn = document.querySelector(".chat-close-btn");
+  const chatTrigger = document.querySelector(".chat-trigger");
 
+  // open chatbot when clicking the icon
+  chatTrigger.addEventListener("click", function () {
+    chatWidget.classList.remove("hidden");
+    chatTrigger.style.display = "none"; 
+  });
+
+  // hide chatbot when clicking the close btn
+  closeBtn.addEventListener("click", function () {
+    chatWidget.classList.add("hidden");
+    chatTrigger.style.display = "flex"; 
+  });
+}
 
 window.addEventListener('scroll', toggleNavbarBackground);
 
 document.addEventListener('DOMContentLoaded', initApp);
-
-
-
