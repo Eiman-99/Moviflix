@@ -65,7 +65,7 @@
     padding-left: 1.5rem;
 }
 
-nav .closebtn {
+nav .closeBtn {
   display: block !important;
   position: absolute;
   top: 0;
@@ -74,3 +74,4 @@ nav .closebtn {
   margin-left: 50px;
 }
 }
+
