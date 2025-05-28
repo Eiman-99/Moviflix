@@ -165,6 +165,14 @@
   .media__container{
     flex-wrap: wrap;
   }
+
+.coming-soon h2, .my-list h2{
+  font-size: 1.5rem !important;
+}
+
+.coming-soon p, .my-list p{
+  font-size: 1rem !important;
+}
 }
 
 @media (max-width:576px){

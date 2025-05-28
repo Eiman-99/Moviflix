@@ -23,6 +23,7 @@ function initApp() {
     renderNavbar()
     renderAll();
     renderMovieOrSeriesDetails()
+    initChatBot()
   }
   else if(pathName === '/series.html'){
     renderNavbar()
@@ -58,8 +59,6 @@ function initApp() {
   }
 
   console.log('current user-->',currentUser)
-  initChatBot()
-
 }
 
 const getData = function(endpoint, swiperContainer) {

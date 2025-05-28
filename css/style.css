@@ -741,6 +741,7 @@ form .code-button:hover {
   gap: 2rem;
   height: 100vh;
   color: #9f9f9f;
+  padding: 0 2rem;
 }
 
 .coming-soon h2, .my-list h2{
