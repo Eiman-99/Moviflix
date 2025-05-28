@@ -1,73 +1,77 @@
 @media(max-width:1175px){
-    .icon:focus ~ .input,
-    .input:focus {
+  .icon:focus ~ .input,
+  .input:focus {
     width: 200px !important;
     transition: all 400ms cubic-bezier(0, 0.110, 0.35, 1) !important;
-    }
+  }
+
+  .details__content{
+    width: 75% !important;
+  }
 }
 
 @media(max-width:1065px){
-.logo-responsive{
-  display: block !important;
-}
+  .logo-responsive{
+    display: block !important;
+  }
 
-.sideNav{
-  height: 100%;
-  width: 0;
-  position: fixed;
-  height: 100vh;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  background-color: #0f0f0f;
-  overflow-x: hidden;
-  transition: 0.5s;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding-top: 1.5rem;
-}
-
-.sideNav .logo{
-    padding-left: 1.5rem  ;
-}
-
-.sideNav ul{
-    padding-left: 1.5rem;
+  .sideNav{
+    height: 100%;
+    width: 0;
+    position: fixed;
+    height: 100vh;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #0f0f0f;
+    overflow-x: hidden;
+    transition: 0.5s;
+    display: flex;
     flex-direction: column;
     align-items: flex-start;
-}
+    padding-top: 1.5rem;
+  }
 
-.profile-sideNav{
-    display: flex !important;
-    align-items: center;
-    padding-left: 1.5rem;
-    gap: 1rem;
-}
+  .sideNav .logo{
+      padding-left: 1.5rem  ;
+  }
 
-.profile-sideNav img{
-    width: 2rem;
-}
+  .sideNav ul{
+      padding-left: 1.5rem;
+      flex-direction: column;
+      align-items: flex-start;
+  }
 
-.sideNav ul a {
-  padding: 0.5rem 0;
-  color: var(--color-grey);
-  display: block !important;
-  transition: 0.3s;
-}
+  .profile-sideNav{
+      display: flex !important;
+      align-items: center;
+      padding-left: 1.5rem;
+      gap: 1rem;
+  }
 
-.signout-btn-navSide{
+  .profile-sideNav img{
+      width: 2rem;
+  }
+
+  .sideNav ul a {
+    padding: 0.5rem 0;
+    color: var(--color-grey);
     display: block !important;
-    padding-left: 1.5rem;
-}
+    transition: 0.3s;
+  }
 
-nav .closeBtn {
-  display: block !important;
-  position: absolute;
-  top: 0;
-  right: 1.5rem;
-  font-size: 2.25rem;
-}
+  .signout-btn-navSide{
+      display: block !important;
+      padding-left: 1.5rem;
+  }
+
+  nav .closeBtn {
+    display: block !important;
+    position: absolute;
+    top: 0;
+    right: 1.5rem;
+    font-size: 2.25rem;
+  }
 }
 
 @media (max-width:992px) {
@@ -90,6 +94,22 @@ nav .closeBtn {
   width: 2.4rem !important;
   height: 2.4rem !important;
 }
+
+.hero__wrapper .hero__title{
+    font-size: 2.3rem !important;
+}
+
+ .media-info{
+    font-size: var(--text-sm) !important;
+  }
+
+  .media-info__description{
+    font-size: var(--text-sm) !important;
+  }
+
+  .media__reviews{
+    font-size: var(--text-sm) !important;
+  }
 }
 
 @media (max-width:768px) {
@@ -123,6 +143,28 @@ nav .closeBtn {
   .swiper-slide{
     max-width: 8rem !important;
   }
+
+  .details__content{
+    width: 80% !important;
+  }
+
+  .hero__btn-play img{
+    max-width: 1rem !important;
+  }
+
+  .hero__btn-add{
+    width: 40px !important;
+    height: 40px !important;
+    padding: 0 !important;
+  }
+
+  .btn-submit{
+    font-size: var(--text-sm) !important;
+  }
+
+  .media__container{
+    flex-wrap: wrap;
+  }
 }
 
 @media (max-width:576px){
@@ -146,5 +188,13 @@ nav .closeBtn {
   .icon:focus ~ .input,
     .input:focus {
     width: 150px !important;
-    }
+  }
+
+  .hero__wrapper .hero__title{
+    font-size: 2rem !important;
+  }
+
+  .hero__wrapper {
+    padding-left: 2rem !important;
+  }
 }

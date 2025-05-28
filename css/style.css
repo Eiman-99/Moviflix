@@ -385,7 +385,7 @@ nav{
 
 .media-info__description{
     line-height: 1.7;
-    font-size: var(--text-md);
+    font-size: 0.875rem;
     margin-top: 1.5rem;
 }
 
