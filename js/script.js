@@ -17,6 +17,16 @@ let currentUser = null
 
 function initApp() {
 
+ const publicPages = ['/login.html', '/signup.html'];
+
+  const isPublicPage = publicPages.includes(pathName);
+  const isLoggedIn = localStorage.getItem('currentUser');
+
+  if (!isLoggedIn && !isPublicPage) {
+    window.location.href = '/login.html';
+    return;
+  }
+
   renderDropDown()
 
   if (pathName === '/' || pathName === '/index.html'  ) {
