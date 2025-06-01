@@ -58,7 +58,7 @@ function initApp() {
     renderNavbar()
   }
 
-  console.log('current user-->',currentUser)
+  // console.log('current user-->',currentUser)
 }
 
 const getData = function(endpoint, swiperContainer) {
@@ -337,7 +337,7 @@ function addReview(e,id){
   }
 
   const reviewContent = document.querySelector('.review__textarea')
-  console.log(reviewContent.value)
+  // console.log(reviewContent.value)
   reviews.push({userName:currentUser.userName ,review:reviewContent.value})
   renderReviews(reviews)
   reviewContent.value=''
@@ -355,7 +355,7 @@ function renderReviews(reviews){
   })
 
   reviewsContainer.innerHTML = reviewsLists
-  console.log(reviewsContainer)
+  // console.log(reviewsContainer)
 }
 
 function setToLocalStorage(id){
@@ -414,7 +414,7 @@ function login(e) {
 
   fetchUserByEmail(email)
     .then(users => {
-      console.log(users);
+      // console.log(users);
 
       if (users.length === 0) {
         document.getElementById('login-email').style.borderColor = 'red';
@@ -559,12 +559,14 @@ handleMediaQueryChange(mediaQuery);
 
 mediaQuery.addEventListener("change", handleMediaQueryChange);
 
-// ---------------------------------------- //
 // chatbot
 function initChatBot () {
   const chatWidget = document.querySelector(".chat-widget");
   const closeBtn = document.querySelector(".chat-close-btn");
   const chatTrigger = document.querySelector(".chat-trigger");
+  const chatMessages = document.querySelector(".chat-messages");
+  const sendBtn = document.querySelector(".chat-send-btn")
+  const chatInput = document.getElementById("chat-message-input")
 
   // open chatbot when clicking the icon
   chatTrigger.addEventListener("click", function () {
@@ -577,6 +579,74 @@ function initChatBot () {
     chatWidget.classList.add("hidden");
     chatTrigger.style.display = "flex"; 
   });
+
+  // send message when clicking the send button
+  sendBtn.addEventListener("click", sendMessage);
+
+  // send message when pressing enter
+  chatInput.addEventListener("keydown", function (e) {
+    if (e.key === "Enter") {
+      sendMessage();
+    }
+  });
+
+  function sendMessage() {
+    const userMessage = chatInput.value.trim();
+    if (userMessage) {
+      appendMessage("user", userMessage);
+      chatInput.value = "";
+      getBotResponse(userMessage);
+    }
+  }
+
+  function appendMessage(sender, message) {
+    const messageElement = document.createElement("div");
+    messageElement.classList.add("message", sender);
+    messageElement.textContent = message;
+    chatMessages.appendChild(messageElement);
+    messageElement.scrollIntoView({ behavior: "smooth" });
+  }
+
+ function getBotResponse(userMessage) {
+  const apiKey = "AIzaSyAlmSDOeizX0Ne60ladEFBTmC5pUGoo9qo";
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+ fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      contents: [
+        {
+          parts: [
+            {
+              text: userMessage,
+            },
+          ],
+        },
+      ],
+      generationConfig: {
+        temperature: 0.7,
+        maxOutputTokens: 150,
+      },
+    }),
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      const botMessage = data.candidates[0].content.parts[0].text;      
+      if (botMessage) {
+        appendMessage("bot", botMessage);
+      } else {
+        appendMessage("bot", "Sorry, no response from Gemini.");
+        console.log("Raw Gemini response:", data);
+      }
+    })
+    .catch((err) => {
+      console.error("Error fetching Gemini response:", err);
+      appendMessage("bot", "Error reaching Gemini API.");
+    });
+}
 }
 
 window.addEventListener('scroll', toggleNavbarBackground);
