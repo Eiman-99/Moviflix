@@ -64,6 +64,7 @@ function initApp() {
     renderNavbar()
   }
 
+  setActiveLink()
   // console.log('current user-->',currentUser)
 }
 
@@ -533,7 +534,7 @@ function renderNavbar(){
                     <span id="dropdown-username">${currentUser ? currentUser.userName : 'Unknown'}</span>
                     </a>
                     <ul class="navbar__links">
-                    <li><a href="/index.html" class="navbar-link active">Home</a></li>
+                    <li><a href="/index.html" class="navbar__link">Home</a></li>
                     <li><a href="/series.html" class="navbar__link">Tv Series</a></li>
                     <li><a href="/films.html" class="navbar__link">Films</a></li>
                     <li><a href="/trends.html" class="navbar__link">New & Popular</a></li>
@@ -667,6 +668,22 @@ function initChatBot () {
       appendMessage("bot", "Error reaching Gemini API.");
     });
 }
+}
+
+// set active link
+function setActiveLink(){
+  const navLinks = document.querySelectorAll('.navbar__link');
+  let currentPath = window.location.pathname
+  if(currentPath==='/'){
+    currentPath = '/index.html' 
+  }
+
+  navLinks.forEach(link => {
+    if (link.getAttribute('href') === currentPath) {
+      console.log(currentPath)
+      link.classList.add('active');
+    }
+  });
 }
 
 window.addEventListener('scroll', toggleNavbarBackground);
