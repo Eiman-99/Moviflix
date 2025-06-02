@@ -32,7 +32,7 @@ function initApp() {
   if (pathName === '/' || pathName === '/index.html'  ) {
     renderNavbar()
     renderAll();
-    renderMovieOrSeriesDetails()
+    // renderMovieOrSeriesDetails()
     initChatBot()
   }
   else if(pathName === '/series.html'){
@@ -43,7 +43,7 @@ function initApp() {
   else if(pathName === '/films.html'){
     renderNavbar()
     renderAllMovies()
-    renderMovieOrSeriesDetails()
+    // renderMovieOrSeriesDetails()
   }
   else if(pathName === '/signup.html')
   {
@@ -57,7 +57,7 @@ function initApp() {
   {
     renderNavbar()
     renderTrends()
-    renderMovieOrSeriesDetails()
+    // renderMovieOrSeriesDetails()
   }
   else if(pathName === '/myList.html')
   {
@@ -97,7 +97,7 @@ const getDetails = function(type, id){
   fetch(`${API_URL}${type}/${id}?api_key=${API_KEY}`)
   .then(response=>response.json())
   .then(data=>{
-    console.log(data)
+    // console.log(data)
     // fetch tv or movie cast
     fetch(`${API_URL}${type}/${id}/credits?api_key=${API_KEY}`)
     .then(response=>response.json())
@@ -115,7 +115,7 @@ function renderSwiper(data, swiperContainer) {
     const type = item.first_air_date ? 'tv' : 'movie';
     html += `
       <div class="swiper-slide">
-        <a href="?id=${item.id}&type=${type}">
+        <a href="#" id="${item.id}" type="${type}" class="details-link">
         <img src="https://image.tmdb.org/t/p/w500${item.poster_path}" alt="Movie poster" />
         </a>
       </div>
@@ -125,6 +125,16 @@ function renderSwiper(data, swiperContainer) {
   swiperWrapper.innerHTML = html;
 
   initializeSwiper();
+
+   const links = document.querySelectorAll(`${swiperContainer} .details-link`);
+  links.forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      const id = link.getAttribute('id');
+      const type = link.getAttribute('type');
+      getDetails(type, id);
+    });
+  });
 }
 
 function initializeSwiper() {
@@ -232,19 +242,24 @@ function renderTrends(){
 }
 
 // display movie or series details
-function renderMovieOrSeriesDetails(){
-  const params = new URLSearchParams(window.location.search)
-  const id = params.get("id")
-  const type = params.get("type")
-  if (!id || !type) return;
+// function renderMovieOrSeriesDetails(){
+//   const params = new URLSearchParams(window.location.search)
+//   const id = params.get("id")
+//   const type = params.get("type")
+//   if (!id || !type) return;
 
-  console.log(id,type)
+//   console.log(id,type)
 
-  getDetails(type,id)
+//   getDetails(type,id)
 
-}
+// }
 
 function createDetailsSection(data,cast){
+  const existingPopup = document.querySelector('.details');
+  if (existingPopup) {
+    existingPopup.remove();  
+  }
+
   const detailsPopUp = document.createElement('section')
   detailsPopUp.classList='details'
   body.append(detailsPopUp)
@@ -323,10 +338,9 @@ function createDetailsSection(data,cast){
   }
 });
   // get the reviews from loacal storage based on media ID
-  if (localStorage.getItem(data.id) !== null) {
-    reviews = JSON.parse(localStorage.getItem(data.id));
-    renderReviews(reviews);
-  }
+  reviews = localStorage.getItem(data.id) ? JSON.parse(localStorage.getItem(data.id)) : [];
+renderReviews(reviews);
+
 
 }
 
@@ -334,7 +348,6 @@ function createDetailsSection(data,cast){
 function closeDetailsPopup(){
   document.querySelector('.details').style.display='none'
   body.style.overflow='auto'
-  window.history.back()
 }
 
 //add reviews
@@ -530,7 +543,7 @@ function renderNavbar(){
                     <li><a href="/myList.html" class="navbar__link">My List</a></li>
                     <li><a href="/lang.html" class="navbar__link">Browse by Language</a></li>
                     </ul>
-                    <a href="${currentUser ? '#' : '/login.html'}" class="signout-btn-navSide">
+                    <a href="/login.html" class="signout-btn-navSide">
                     ${currentUser ? 'Sign out' : 'Login'}
                     </a>` 
 }

@@ -274,15 +274,14 @@ nav{
 
 /* details */
 .details{
-    position: absolute;
+    position: fixed;
     top: 0;
     width: 100%;
-    height: 100%;
+    height: 100vh;
     background: #000000d0;
     display: none;
     z-index: 1000;
     padding-top: 2rem;
-    overflow: auto;
 }
 
 .details__content{
@@ -291,7 +290,7 @@ nav{
     margin: 0 auto;
     height: 100%;
     border-radius: 10px 10px 0 0;
-    height: 100vh;
+    height: 100%;
     padding-bottom: 4rem;
     overflow: auto;
 }
