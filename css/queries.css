@@ -1,3 +1,9 @@
+@media(max-width: 1193px){
+  .login__container {
+    width: 40% !important;
+  }
+}
+
 @media(max-width:1175px){
   .icon:focus ~ .input,
   .input:focus {
@@ -127,6 +133,10 @@
   .media__reviews{
     font-size: var(--text-sm) !important;
   }
+
+  .login__container {
+    width: 48% !important;
+  }
 }
 
 @media (max-width:768px) {
@@ -190,6 +200,15 @@
 .coming-soon p, .my-list p{
   font-size: 1rem !important;
 }
+
+.login__container {
+  width: 60% !important;
+}
+
+.options {
+  flex-wrap: wrap !important;
+  gap: 0.5rem !important;
+}
 }
 
 @media (max-width:576px){
@@ -238,5 +257,17 @@
 
   .register form button{
     font-size: 1rem !important;
+  }
+
+  .login__container {
+    width: 85% !important;
+    margin-top: 3rem !important;
+  }
+}
+
+@media(max-width:450px){
+   .login__container {
+    width: 100% !important;
+    margin-top: 3rem !important;
   }
 }

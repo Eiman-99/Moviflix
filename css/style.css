@@ -607,7 +607,7 @@ form .code-button:hover {
   justify-content: space-between;
   font-size: 0.875rem;
   color: #bbb;
-  margin-bottom: 1.5rem;
+  gap: 1rem;
 }
 
 .options a {
@@ -622,7 +622,7 @@ form .code-button:hover {
 .signup {
   font-size: 0.875rem;
   color: #bbb;
-  margin-bottom: 1rem;
+  margin: 1rem 0;
 }
 
 .signup a {
