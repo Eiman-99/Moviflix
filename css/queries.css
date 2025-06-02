@@ -72,6 +72,23 @@
     right: 1.5rem;
     font-size: 2.25rem;
   }
+
+  .register__container{
+    padding-top: 10% !important;
+  }
+
+  .register__headline{
+    font-size: 2.5rem !important;
+  }
+
+  .register form{
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .register form input, .register form button{
+    width: 60% !important;
+  }
 }
 
 @media (max-width:992px) {
@@ -204,5 +221,22 @@
 
   .hero__wrapper {
     padding-left: 2rem !important;
+  }
+
+   .register__container{
+    padding-top: 20% !important;
+  }
+
+  .register__headline{
+    font-size: 2rem !important;
+  }
+
+  .register form input, .register form button{
+    width: 80% !important;
+    padding: 1rem 0.7rem !important ;
+  }
+
+  .register form button{
+    font-size: 1rem !important;
   }
 }

@@ -32,18 +32,15 @@ function initApp() {
   if (pathName === '/' || pathName === '/index.html'  ) {
     renderNavbar()
     renderAll();
-    // renderMovieOrSeriesDetails()
     initChatBot()
   }
   else if(pathName === '/series.html'){
     renderNavbar()
     renderAllSeries()
-    renderMovieOrSeriesDetails()    
   }
   else if(pathName === '/films.html'){
     renderNavbar()
     renderAllMovies()
-    // renderMovieOrSeriesDetails()
   }
   else if(pathName === '/signup.html')
   {
@@ -57,7 +54,6 @@ function initApp() {
   {
     renderNavbar()
     renderTrends()
-    // renderMovieOrSeriesDetails()
   }
   else if(pathName === '/myList.html')
   {
@@ -468,6 +464,7 @@ function fetchUserByEmail(email) {
 
 function toggleNavbarBackground(){
   const navbar = document.querySelector('header')
+  if (!navbar) return;
   if(window.scrollY>0){
     navbar.classList.add('navbar-scroll')
   }else{
