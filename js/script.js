@@ -71,23 +71,25 @@ function initApp() {
 }
 
 const getData = function(endpoint, swiperContainer) {
+  showLoader()
   fetch(`${API_URL}${endpoint}?api_key=${API_KEY}`)
     .then(response => response.json())
     .then(data => {
       const {results} = data
-      // console.log(results)
+      hideLoader()
       renderSwiper(results, swiperContainer);
     }).catch(err => console.log(err));
 };
 
 // get data with genre
 const getGenre = function(type,genreId,swiperContainer){
+  showLoader()
   fetch(`${API_URL}discover/${type}?api_key=${API_KEY}&with_genres=${genreId}`)
   .then(response=>response.json())
   .then(data=>{
     const {results} = data
-    // console.log(results)
-      renderSwiper(results, swiperContainer);
+    hideLoader()
+    renderSwiper(results, swiperContainer);
   }).catch(err => console.log(err))
 }
 
@@ -711,11 +713,13 @@ function handleSearch() {
 
 
 function searchTMDB(query,section) {
+  showLoader()
   fetch(`${API_URL}search/multi?api_key=${API_KEY}&query=${query}`)
     .then(response => response.json())
     .then(data => {
       const {results} = data
       console.log(results)
+      hideLoader()
       renderFilteredMedia(results,section)
     })
     .catch(err => console.log(err));
@@ -739,6 +743,20 @@ function renderFilteredMedia(media,section) {
     mediaWrapper.appendChild(mediaCard);
   });
   section.appendChild(mediaWrapper)
+}
+
+// Loader
+function showLoader(){
+  document.querySelector('.loader').classList.add('show');
+}
+
+function hideLoader(){
+  document.querySelector('.loader').classList.remove('show');
+}
+
+function showLoader(){
+  const loader = document.querySelector('.loader');
+  loader.classList.add('show')
 }
 
 searchInput.addEventListener('input', handleSearch)
