@@ -137,6 +137,12 @@
   .login__container {
     width: 48% !important;
   }
+
+  .filter{padding-top: 14% !important;}
+
+  .filter .media-wrapper{
+  justify-content: center;
+  }
 }
 
 @media (max-width:768px) {
@@ -263,6 +269,9 @@
     width: 85% !important;
     margin-top: 3rem !important;
   }
+
+  .filter{padding-top: 20% !important;}
+
 }
 
 @media(max-width:450px){
@@ -270,4 +279,7 @@
     width: 100% !important;
     margin-top: 3rem !important;
   }
+
+  .filter{padding-top: 27% !important;}
+
 }

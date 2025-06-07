@@ -83,7 +83,7 @@ header{
     position: fixed;
     width: 100%;
     padding: 1rem 0;
-    z-index: 100;
+    z-index: 1000;
     transition: all 0.3s ease; /* 👈 smooth transition */
 }
 
@@ -891,3 +891,38 @@ nav .closeBtn {
 .chat-send-btn:hover {
   background-color: #b71c1c;
 }
+
+/* Filter */
+.filter{
+  position: fixed;
+  top:0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background: #141414;
+  z-index: 10;
+  overflow-y: auto;
+  padding-top: 10%;
+}
+
+.filter .media-wrapper{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.filter .card-wrapper{
+  width: 14rem;
+  height: 8rem;
+  overflow: hidden;
+  position: relative;
+
+}
+
+.card-wrapper .brand-icon {
+  position: absolute;
+  top: 0.4rem;
+  left: 0.4rem;
+  width: 0.8rem;
+}
+

@@ -4,11 +4,13 @@ const genreWrapper = document.querySelectorAll('.genre__wrapper');
 const API_KEY = 'cc687401dafd56a04490baaaa29e1329';
 const API_URL = 'https://api.themoviedb.org/3/';
 const body = document.body;
-const nav = document.querySelector('header nav') 
-const registerForm = document.getElementById('register-form')
-const loginForm = document.getElementById('login-form')
-const signOutBtn = document.querySelector('.signout-btn')
+const nav = document.querySelector('header nav');
+const registerForm = document.getElementById('register-form');
+const loginForm = document.getElementById('login-form');
+const signOutBtn = document.querySelector('.signout-btn');
 const dropdown = document.querySelector('.dropdown-content');
+const searchBtn = document.querySelector('.icon');
+const searchInput = document.querySelector('.input');
 
 
 let reviews = []
@@ -680,11 +682,66 @@ function setActiveLink(){
 
   navLinks.forEach(link => {
     if (link.getAttribute('href') === currentPath) {
-      console.log(currentPath)
+      // console.log(currentPath)
       link.classList.add('active');
     }
   });
 }
+
+// search
+function handleSearch() {
+  const query = searchInput.value.trim();
+  let filteredMediaSection = document.querySelector('.filter');
+
+  if (!query) {
+    if (filteredMediaSection) filteredMediaSection.remove();
+    body.style.overflow = 'auto';
+    return;
+  }
+
+  if (!filteredMediaSection) {
+    filteredMediaSection = document.createElement('section');
+    filteredMediaSection.classList.add('filter');
+    body.append(filteredMediaSection);
+  }
+
+  searchTMDB(query, filteredMediaSection);
+  body.style.overflow = 'hidden';
+}
+
+
+function searchTMDB(query,section) {
+  fetch(`${API_URL}search/multi?api_key=${API_KEY}&query=${query}`)
+    .then(response => response.json())
+    .then(data => {
+      const {results} = data
+      console.log(results)
+      renderFilteredMedia(results,section)
+    })
+    .catch(err => console.log(err));
+}
+
+function renderFilteredMedia(media,section) {
+  section.innerHTML = '';
+  const mediaWrapper = document.createElement('div');
+  mediaWrapper.classList.add('media-wrapper', 'container');
+
+  media.forEach(item => {
+     if (!item.poster_path) return;
+    const mediaCard = document.createElement('div');
+    mediaCard.classList.add('card-wrapper');
+
+    mediaCard.innerHTML = `
+      <img class="brand-icon" src="assets/media-logo.png" alt="brand icon">
+      <img src="https://image.tmdb.org/t/p/w500${item.poster_path}" alt="media">
+    `;
+
+    mediaWrapper.appendChild(mediaCard);
+  });
+  section.appendChild(mediaWrapper)
+}
+
+searchInput.addEventListener('input', handleSearch)
 
 window.addEventListener('scroll', toggleNavbarBackground);
 
