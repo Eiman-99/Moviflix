@@ -759,7 +759,10 @@ function showLoader(){
   loader.classList.add('show')
 }
 
-searchInput.addEventListener('input', handleSearch)
+
+if(searchInput){
+  searchInput.addEventListener('input', handleSearch)
+}
 
 window.addEventListener('scroll', toggleNavbarBackground);
 

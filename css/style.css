@@ -901,7 +901,7 @@ nav .closeBtn {
   width: 100vw;
   background: #141414;
   z-index: 10;
-  overflow-y: auto;
+  overflow-y: hidden;
   padding-top: 10%;
 }
 
@@ -909,6 +909,8 @@ nav .closeBtn {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
+  overflow: auto;
+  height: 100%;
 }
 
 .filter .card-wrapper{
