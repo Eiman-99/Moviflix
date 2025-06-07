@@ -1048,3 +1048,66 @@ nav .closeBtn {
 .show{
   display: flex;
 }
+
+/* Footer */
+.footer {
+  color: #777;
+  padding: 2rem;
+  width: 70%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.social-icons {
+  margin-bottom: 1.5rem;
+  font-size: 1.3rem;
+}
+.social-icons i {
+  margin: 0 0.75rem;
+  color: #fff;
+  cursor: pointer;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-bottom: 1.5rem;
+  width: 100%;
+}
+.footer-links ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+}
+.footer-links a {
+  color: #777;
+  text-decoration: none;
+  margin-bottom: 0.5rem;
+  font-size: 0.8rem;
+}
+.footer-links a:hover {
+  text-decoration: underline;
+}
+
+.service-code {
+  background: transparent;
+  border: 1px solid #777;
+  color: #777;
+  padding: 0.4rem 1rem;
+  cursor: pointer;
+  margin-bottom: 1rem;
+  font-size: 0.8rem;
+}
+.service-code:hover {
+  color: white;
+}
+
+.footer p {
+  font-size: 0.7rem;
+}
